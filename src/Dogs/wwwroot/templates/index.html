@@ -1,0 +1,50 @@
+﻿<div ng-controller="userController as uc">
+    <div ng-show="uc.loggedIn">
+        Hello, {{user.Name}} <br />
+        <div class="row" ng-controller="listController as shoplist">
+
+            <input type="text" ng-model="text" /><button ng-click="add(text)" class="btn">Add</button>
+
+            <table>
+
+                <tbody>
+                    <tr ng-repeat="item in List">
+
+                        <td>{{item.Name}}</td>
+                        <td><button ng-click="clear(item.Id)" class="btn">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <footer>
+
+        <form ng-hide="uc.loggedIn" method="POST">
+            <h4> Login</h4>
+
+            <div class="form-group">
+
+
+                <input name="Email" type="text" id="Email" placeholder="Email" required ng-model="uc.user.Email"/>
+
+            </div>
+            <div class="form-group">
+
+
+                <input name="Password" id="Password" type="password" required placeholder="Password" ng-model="uc.user.Password"/>
+
+            </div>
+
+            <div class="form-group">
+
+                <button ng-click="uc.login()">Log in</button>
+
+            </div>
+            <p>
+                <a href="#/register">Register as a new user?</a>
+            </p>
+
+        </form>
+    </footer>
+</div>

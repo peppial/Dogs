@@ -1,8 +1,8 @@
 ﻿angular.module('shoplistApp').controller('listController', ['$scope', 'ShopList', function listController($scope, ShopList) {
-
+     
     if ($scope.user == null)
         $scope.user = {
-            Email: '', Password: '', Name: '', UserId: ''
+            Email: '', Password: '', Name: 'Peppi', UserId: 'peppi'
         };
     $scope.$watch('user.UserId',
     function () {

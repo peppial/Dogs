@@ -5,6 +5,7 @@
 /// <reference path="../scripts/controllers/listcontroller.js" />
 /// <reference path="../scripts/controllers/usercontroller.js" />
 /// <reference path="../scripts/services/shoplistservice.js" />
+/// <reference path="../Scripts/Services/userService.js" />
 /// <reference path="js/app.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/angular/angular.js" />

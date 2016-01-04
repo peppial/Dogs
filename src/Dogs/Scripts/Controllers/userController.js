@@ -1,8 +1,8 @@
 ﻿angular.module('shoplistApp').controller('userController', ['userService', '$scope', '$location', function (userService, $scope, $location) {
     var vm = this;
+  
     
-    
-    this.loggedIn = false;
+    this.loggedIn = true;
     
     this.login = function () {
         userService.login(vm.user).$promise.then(function (data) {

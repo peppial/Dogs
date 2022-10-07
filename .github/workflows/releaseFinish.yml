@@ -51,7 +51,7 @@ jobs:
       run: git checkout master
       
     - name: Finish release branch
-      run: git merge development
+      run: git merge develop
 
       #run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
       

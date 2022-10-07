@@ -41,6 +41,9 @@ jobs:
     - name: Set Name
       run: git config --global user.email "penka.alexandrova@scaleforce.io" && git config --global user.name "peppi-scaleforce"
        
+    - name: Checkout release branch
+      run: git checkout release/${{ github.event.inputs.name }}
+      
     - name: Finish release branch
       run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
       

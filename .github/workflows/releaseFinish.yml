@@ -45,7 +45,7 @@ jobs:
     - name: pull release
       run: git pull origin release/${{ github.event.inputs.name }}
     - name: status
-      run: git remote add origin  https://github.com/peppial/Dogs.git
+      run: git remote -v
       
     - name: status
       run: git checkout release/${{ github.event.inputs.name }}

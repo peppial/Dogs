@@ -26,32 +26,29 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        ref: 'release/${{ github.event.inputs.name }}'
+        ref: 'develop'
         
         
     - name: Checkout master branch
       run: git fetch && git checkout master
-    
-    - name: Checkout master develop
-      run: git fetch && git checkout develop
-       
+         
     - name: Install git-flow
-      run: sudo apt-get update && sudo apt-get install git-flow
+      run: sudo apt-get install git-flow
       
     - name: Init git flow
       run: git flow init -d --feature feature/  --bugfix feature/ --release release/ --hotfix hotfix/  -t ''
     
     - name: Set Name
       run: git config --global user.email "penka.alexandrova@scaleforce.io" && git config --global user.name "peppi-scaleforce"
- 
-    - name: pull release
-      run: git pull origin release/${{ github.event.inputs.name }}
-    - name: status
-      run: git remote -v
-      
-    - name: status
-      run: git checkout master
-      
+       
     - name: Finish release branch
       run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
       
+    - name: Push master branch
+      run: git push origin master 
+      
+    - name: Push develop branch
+      run: git push origin develop
+      
+    - name: Push tag
+      run: git push origin --tags

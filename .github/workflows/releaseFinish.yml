@@ -44,7 +44,9 @@ jobs:
  
     - name: pull release
       run: git pull origin release/${{ github.event.inputs.name }}
-              
+    - name: status
+      run: git status
+      
     - name: Finish release branch
       run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
       

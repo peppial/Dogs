@@ -34,7 +34,7 @@ jobs:
       run: git fetch && git checkout develop
        
     - name: Install git-flow
-      run: sudo apt-get install git-flow
+      run: sudo apt-get update && sudo apt-get install git-flow
       
     - name: Init git flow
       run: git flow init -d --feature feature/  --bugfix feature/ --release release/ --hotfix hotfix/  -t ''

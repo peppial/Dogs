@@ -1,0 +1,48 @@
+name: Finish Release
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Release tag (e.g. 1.4.0)'
+        required: true
+      source:
+        description: 'Source of event'
+        required: false
+        default: 'No source specified'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    - name: Check out code develop
+      uses: actions/checkout@v2
+      with:
+        ref: 'release/${{ github.event.inputs.name }}'
+        
+    - name: Checkout master branch
+      run: git fetch && git checkout master
+    
+    - name: Checkout master develop
+      run: git fetch && git checkout develop
+       
+    - name: Install git-flow
+      run: sudo apt-get install git-flow
+      
+    - name: Init git flow
+      run: git flow init -d --feature feature/  --bugfix feature/ --release release/ --hotfix hotfix/  -t ''
+    
+    - name: Set Name
+      run: git config --global user.email "penka.alexandrova@scaleforce.io" && git config --global user.name "peppi-scaleforce"
+ 
+              
+    - name: Finish release branch
+      run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
+      

@@ -48,8 +48,10 @@ jobs:
       run: git remote -v
       
     - name: status
-      run: git checkout release/${{ github.event.inputs.name }}
+      run: git checkout master
       
     - name: Finish release branch
-      run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
+      run: git merge development
+
+      #run: git flow release finish ${{ github.event.inputs.name }} -m 'Merge branch' ${{ github.event.inputs.name }}
       
